@@ -13,10 +13,13 @@ class RenderTimeService{
     }
 
     public function buttonDownTime(DateTime $dateEdit){
-        $newDateEdit = $dateEdit->add(new \DateInterval('P1D'));
+        $newDateEdit = $dateEdit->setTimezone($this->zone)->add(new \DateInterval('P1D'));
         $now = new DateTime('now' , $this->zone);
-        if($now >= $newDateEdit){
+    
+        if($now > $newDateEdit){
             return true;
         }
+        
+        return false;
     }
 }
