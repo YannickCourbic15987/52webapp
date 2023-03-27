@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}52 --les jeux du cirques{% endblock %}
+
+{% block content %}
+<div class="content_walpaper">
+    <h1 class="text-bgGold fw-bolder personnal_size_game text-center py-5 text-uppercase">Colisée</h1>
+    <div class="container d-flex justify-content-center align-item-center">
+        {% if event %}
+        <div class="bg-bgGold col-md-6 col-md-8 col-xl-4 p-5 rounded-5">
+            <h1 class="text-yeelowGold text-uppercase text-center">Victoire</h1>
+            <h3 class="text-danger text-center fw-bolder">le gladiateur {{champion.name}} a remporté l'épreuve du colisée et qui est affilié au laniste {{laniste}}</h3>
+            <h5 class="text-yellowGold text-center fw-bolder">Vous avez gagné 2 coin ! BRAVO!</h5>
+            <h5 class="text-yellowGold text-center fw-bolder">Vos Stats on un peu augmenté</h5>
+            <div class="container d-flex justify-content-center">
+                <img src="{{ asset('build/images/uploads/avatars/'~champion.avatar) }}" alt="" class="bg-yellowGold rounded-circle" width="100px" height="100px">
+            </div>
+        </div>
+        {% else %}
+            <div class="bg-bgGold col-md-6 col-md-8 col-xl-4 p-5 rounded-5">
+                <h1 class="text-danger text-uppercase text-center">fermée</h1>
+                <h3 class="text-yellowGold text-center text-uppercase fw-bolder">rouvre à 18H</h3>
+                <div class="container d-flex justify-content-center">
+                    <img src="{{ asset('build/images/cadenas.png') }}" alt="" class="bg-yellowGold rounded-circle">
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

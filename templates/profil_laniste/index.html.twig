@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}52 Les Jeux du Cirques -Profil{% endblock %}
+
+{% block content %}
+
+{% if errorCoin %}
+<div class="alert alert-dismissible fade show personnal_alert_errorCoin" role="alert">
+    <strong>Vous n'avez pas assez de Coin. </strong>
+            Pour acheter un Ludi , il vous faudra 60 Coin.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endif %}
+
+{% if collectionLaniste is empty %}
+       <div class='container_blur'>
+            <div class="col-md-8 col-xs-12 col-xl-4">
+                    <div class="card personnal_card_ludi">
+                        <div class="card-body">
+                            <div class="card-title personnal_title_card_ludi">
+                                Créer un Ludi
+                            </div>
+                            <div class="card-text personnal_card_text">
+                                {{ form(form) }}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+       </div>
+
+{% else %}
+    <div class="container_homeLaniste">
+        <div class="conatainer_background_homeLaniste py-2 d-flex justify-content-center">
+            <h1 class="title_homeLaniste text-uppercase text-center py-3">mes ludis</h1>
+        </div>
+        <div class="logo_container_arena_gladiator">
+        </div>
+        <div class="circle_count_ludis d-flex justify-content-center align-items-center">
+            <h1 class="number_ludis"> {{countCollection}}</h1>
+        </div>
+        <div class="container_button_add ">
+            <a href="{{ (coin > 60) ? path("app_add_ludi") :  "/profil?errorCoin=1"}}" role="button" class="btnAddLudi">
+                <img src="{{ asset("build/images/colosseum.82ba2dbb.png") }}" alt="" width="80px" height="80px" class='linkBtn'>
+            </a>
+        </div>
+            <img src="{{ asset('build/images/plus.png') }}" alt="" height='40px' width='40px' class='plusBtn'>
+
+        
+        <div class="container_ludis_item mx-auto py-5">
+            {% for ludi in arrayLaniste %}
+                {% if ludi.id is not null %}
+                    <div class="content_ludis mb-2 mx-auto d-flex flex-column flex-md-row justify-content-around align-items-center py-5">
+                        <div class="logo_helemet_gladiator my-2 py-3 px-2 d-flex justify-content-center align-items-center" role="button">
+                            <a href="{{ path('app_profil_detail', {'id':ludi.id  }) }}">
+                                <img src= "{{ asset('build/images/colosseum.png') }}"alt="" width="70px" height="70px" >
+                            </a>
+                        </div>
+                            <img src="{{ asset('build/images/search.png') }}" alt="" width="30px" height="30px">
+                        
+                        <div class="container_item w-75 h-75 d-flex flex-column flex-md-row flex-grow justify-content-center align-items-center rounded-4 py-3 gap-3 px-3">
+                            <p class="item_ludi item_ludi_p">Nom du ludi :</p>
+                            <h4 class="item_ludi">{{ludi.name}}</h4>
+                            <div class="item_ludi_sepciality_logo">
+                                <img src="{{ asset('build/images/badge.png') }}" alt="image logo speciality" width="auto" height="35px">
+                            </div>
+                            <p class="item_ludi item_ludi_p">{{ludi.speciality}}</p>
+                            <img src="{{ asset('build/images/gladiator.png') }}" alt="image logo gladiator" width="auto" height="50px">
+                        </div>
+                    </div>
+                {% endif %}
+                
+                
+            {% endfor %}
+        </div>
+            <div class="content_treasure">
+                <img src="{{ asset('build/images/treasure.png') }}" alt="image treasure" classe="img_treasure" width="150px" height="auto">
+                    <div class="content_gold">
+                            <div class="container-coin">
+                                    {{ coin }}
+                                <img src="{{ asset('build/images/coin.png') }}" alt="image coin" width="30px" height="auto">
+                            </div> 
+                    </div>
+            </div>
+    </div>
+{% endif %}
+{% endblock %}

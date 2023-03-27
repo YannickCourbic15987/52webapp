@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}52 Les Jeux du Cirques -Registration{% endblock %}
+
+{% block content %}
+    <h1 class="text-center  py-4 text-signUp "> S 'INSCRIRE</h1>
+    <div class="personnal_container_form w-100">
+        <div class="col-md-6 col-xl-4 col-xs-11 mx-auto">
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.prename) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.coin) }}
+            {{ form_row(form.password) }}
+            <div class="d-flex justify-content-center">
+            {{ form_row(form.Inscription) }}
+            </div>
+        {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

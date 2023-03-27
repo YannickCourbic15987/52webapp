@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+
+    <h1 class="h3 mb-3 font-weight-bolder text-signUp fw-bolder text-center mt-4 personnal_title_login text-uppercase">Se connecter</h1>
+    <div class=" personnal_display">
+        <div class="col-md-6 col-xl-4 col-xs-11 ">
+        <label for="inputEmail" class="form-label text-signUp fw-bolder mt-3">Votre Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label for="inputPassword" class="form-label text-signUp fw-bolder mt-3">Votre Mot de Passe </label>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+        <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+        >
+
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
+                    #}
+            <div class="container_btn">
+                    <button class="personnal_btnSubmit mt-5" type="submit">
+                        Se connecter
+                    </button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

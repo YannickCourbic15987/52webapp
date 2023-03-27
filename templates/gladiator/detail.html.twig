@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}52 Les Jeux du Cirques --Détail du Gladiateur{% endblock %}
+
+{% block content %}
+
+    {% if successToTraining %}
+            <div class="alert alert-green alert-dismissible fade show text-center" role="alert">
+                <strong>Vous avez entrainé votre gladiateur avec succès !.
+                </strong>
+                Pour acheter un autre Gladiateur , il vous faudra 5 Coin.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            
+    {% endif %}
+    <h1 class="text-marron text-center fw-bold my-3">{{gladiator.name}}</h1>
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-11 d-flex flex-column">
+            <img src="{{ asset("build/images/uploads/avatars/"~gladiator.avatar) }}" alt="" width="200px" height="200px" class="bg-bgGold p-2 mx-auto rounded-circle">
+            <div class="container">
+                <h1 class="text-marron text-center my-2 ">spécialité : <span class="text-danger">{{speciality}}</span></h1>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center gap-5">
+            {% if renderForm %}
+                <div class="form-group">
+                    {{ form_start(form) }}
+                        {{ form_row(form.choiceTraining) }}
+                        {{ form_row(form.training) }}
+                    {{ form_end(form) }}
+                </div>
+                {% else %}
+                <input type="hidden" value="{{dateEdit }}" id="newDateTrain">
+                <h2 class="text-marron text-center my-2">Entraînement de nouveau disponible dans : </h2>
+                <h2 id="container_dateTrain" class="text-danger text-lowercase">
+                </h2>
+            {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-11 my-md-5 ">
+            <h1 class="text-marron text-center my-1 my-md-5 fw-bolder text-uppercase">
+                Statistiques
+            </h1>
+            <div class="d-flex bg-yellowGold justify-content-center align-items-center gap-5 rounded-5 py-2 my-3 mx-5">
+                <img src="{{ asset("build/images/bow-and-arrow.png") }}" alt="" width="60px" height="60px" class="p-2 bg-bgGold rounded-circle" >
+                <h3 class="text-danger text-uppercase">dextérité</h3>
+                <h1 class="text-danger">{{gladiator.address}}</h1>
+            </div>
+            <div class="d-flex bg-yellowGold justify-content-center align-items-center gap-5 rounded-5 py-2 my-3 mx-5">
+                <img src="{{ asset("build/images/strong.png") }}" alt="" width="60px" height="60px" class="p-2 bg-bgGold rounded-circle" >
+                <h3 class="text-danger text-uppercase">force</h3>
+                <h1 class="text-danger">{{gladiator.strength}}</h1>
+            </div>
+            <div class="d-flex bg-yellowGold justify-content-center align-items-center gap-5 rounded-5 py-2 my-3 mx-5">
+                <img src="{{ asset("build/images/balance.png") }}" alt="" width="60px" height="60px" class="p-2 bg-bgGold rounded-circle" >
+                <h3 class="text-danger text-uppercase">équilibre</h3>
+                <h1 class="text-danger">{{gladiator.balance}}</h1>
+            </div>
+            <div class="d-flex bg-yellowGold justify-content-center align-items-center gap-5 rounded-5 py-2 my-3 mx-5">
+                <img src="{{ asset("build/images/speed.png") }}" alt="" width="60px" height="60px" class="p-2 bg-bgGold rounded-circle" >
+                <h3 class="text-danger text-uppercase">Vitesse</h3>
+                <h1 class="text-danger">{{gladiator.speed}}</h1>
+            </div>
+            <div class="d-flex bg-yellowGold justify-content-center align-items-center gap-5 rounded-5 py-2 my-3 mx-5">
+                <img src="{{ asset("build/images/strategy.png") }}" alt="" width="60px" height="60px" class="p-2 bg-bgGold rounded-circle" >
+                <h3 class="text-danger text-uppercase">Stratégie</h3>
+                <h1 class="text-danger">{{gladiator.strategy}}</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}

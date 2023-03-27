@@ -2,18 +2,60 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}52 Les Jeux du Cirques{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+     
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="">
+        {% block body %}
+        <nav class="navbar navbar-expand-lg personnal_navbar">
+            <div class="container-fluid">
+                    <a class="navbar-brand personnal_brand" href="/home">52 Les Jeux du Cirques</a>
+                        <button class="navbar-toggler personnal_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon personnal_menu_icon"></span>
+                        </button>
+                    <div class="collapse navbar-collapse personnal_navbar_col" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href={{ path('app_home') }}>Accueil</a>
+                            </li>
+                            {% if app.user %}
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href={{ path('app_profil_laniste') }}>Mes Ludis</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href={{ path('app_circle_game') }}>Colisée</a>
+                                </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/registration">Inscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href={{ path('app_login') }} >Connexion</a>
+                            </li>
+                            {% endif %}
+                    
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container_bg_color">
+                {% block content %}
+
+                {% endblock %}
+                {% block javascripts %}
+                    {{ encore_entry_script_tags('app') }}
+                    {{ encore_entry_script_tags('event')}}
+                {% endblock %}
+            </div>
+
+
+        {% endblock %}
+     
     </body>
 </html>

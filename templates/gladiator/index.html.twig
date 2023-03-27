@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}52 Les Jeux du Cirques --Ajout de Gladiateur{% endblock %}
+
+{% block content %}
+<div class='container_blur'>
+    <div class="col-md-8 col-xs-12 col-xl-4">
+        <div class="card personnal_card_ludi">
+            <div class="card-body">
+                <div class="card-title personnal_title_card_ludi">
+                    Ajouter un gladiateur
+                </div>
+                <div class="card-text personnal_card_text">
+                    {{ form(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

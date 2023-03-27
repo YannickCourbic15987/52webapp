@@ -1,0 +1,12 @@
+
+$theme-colors: (
+    'signUp' : #9e712d,
+    'danger' : #dc143c,
+    'green': #8cd300,
+    "bgGold": #ECB72F,
+    "golden":#F9F134,
+    "marron": #e1a064,
+    "yellowGold": #ffea7e
+    );    
+    
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

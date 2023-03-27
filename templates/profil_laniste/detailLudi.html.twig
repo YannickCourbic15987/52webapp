@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+{% if errorBuyGlad %}
+
+    <div class="alert alert-dismissible fade show personnal_alert_errorCoin text-center" role="alert">
+        <strong>Vous n'avez pas assez de Coin.
+        </strong>
+        Pour acheter un Gladiateur , il vous faudra 5 Coin.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+{% if errorNumberGlad %}
+    <div class="alert alert-dismissible fade show personnal_alert_errorCoin text-center" role="alert">
+        <strong>
+        Vous atteint la limite maximale d'achat de gladiateur qui est de 10
+        </strong>
+        Pour acheter d'autre  Gladiateur , il vous faudra l'acheter dans un autre ludis.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+
+{% if successToBuy %}
+
+    <div class="alert alert-green alert-dismissible fade show text-center" role="alert">
+        <strong>Vous recruter le gladiateur
+            {{ (successToBuy) ? successToBuy : '' }}.
+        </strong>
+        Pour acheter un autre Gladiateur , il vous faudra 5 Coin.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+
+
+
+    <div class="d-flex justify-content-center my-5 ">
+        <h1 class="title_details text-uppercase text-golden bg-bgGold d-inline-block py-1 px-5 rounded-5">
+        {{ ludi.name }}
+        </h1>
+    </div>
+    <div class="float-end mx-3 bg-bgGold px-4 py-2 rounded-5 d-flex align-items-center justify-content-center">
+    <h1 class="d-inline mx-2 my-2 text-golden">{{coin}}</h1>
+    <img src="{{ asset('build/images/coin.png') }}" alt="image coin" width="30px" height="auto">
+    </div>
+    <div class="mx-2 float-start">
+        <a href="{{ path('app_add_gladiator', {'id': ludi.id}) }}" role="link">
+            <img src="{{ asset('build/images/roman-helmet.png') }}" alt="image coin" width="85px" height="auto">
+            <img src="{{ asset('build/images/plus.png') }}" alt="image coin" width="25px" height="auto">
+        </a>
+    </div>
+    <div class="float-end mx-2 my-3 text-uppercase d-flex align-items-center ">
+        <img src="{{ asset('build/images/star.png') }}" alt="image coin" width="60px" height="auto">
+        <h1 class="text-bgGold fw-bolder d-inline-block ">{{ludi.speciality}}</h1>
+    </div>
+    
+    <div class="container bg-bgGold  personnal_position_size  py-3 rounded-5 d-flex  flex-column gap-2">
+        <h1 class="text-marron  personnal_position_title text-center text-yellowGold position-static">Mes Gladiateurs</h1>
+        {% for gladiator in gladiators %}
+        <div class="d-flex flex-md-row flex-column align-items-center justify-content-center gap-md-5  gap-1">
+                <a href="{{ path("app_detail_gladiator" ,{"id": gladiator.id}) }}" role="link"> 
+                    <div class="personnal_size_avatar bg-marron rounded-circle">
+                        <img src="{{ asset('build/images/uploads/avatars/'~gladiator.avatar) }}" alt="" width="100px" height="100px">
+                    </div>
+                    <img src="{{ asset('build/images/search.png') }}" alt="" width='30px' height="30px" class="personnal_position_search">
+                </a>
+        
+            <div class=" bg-yellowGold my-3 px-3 py-2 rounded-4 d-flex align-items-center flex-wrap flex-md-row">
+                <h4 class="text-marron text-uppercase p-2 "> <span class="text-lowercase">Nom :</span>  {{ gladiator.name }} </h4> 
+                <div class="bg-bgGold mx-2 personnal_size_logos rounded-circle">
+                    <img src="{{ asset('build/images/bow-and-arrow.png') }}" alt="" width="50px" height="50px">
+                </div>
+                <h1 class="fw-bolder text-danger">{{gladiator.address}}</h1>
+                <div class="bg-bgGold mx-2 personnal_size_logos rounded-circle">
+                    <img src="{{ asset('build/images/strong.png') }}" alt="" width="50px" height="50px">
+                </div>
+                <h1 class="fw-bolder text-danger">{{gladiator.strength}}</h1>
+                <div class="bg-bgGold mx-2 personnal_size_logos rounded-circle">
+                    <img src="{{ asset('build/images/balance.png') }}" alt="" width="50px" height="50px">
+                </div>
+                <h1 class="fw-bolder text-danger">{{gladiator.balance}}</h1>
+                <div class="bg-bgGold mx-2 personnal_size_logos rounded-circle">
+                    <img src="{{ asset('build/images/strategy.png') }}" alt="" width="50px" height="50px">
+                </div>
+                <h1 class="fw-bolder text-danger">{{gladiator.strategy}}</h1>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
